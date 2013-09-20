@@ -1,0 +1,9 @@
+MediawikiFS Preview. 
+Virtual user-mode file system for Windows.
+===========================================
+
+Note: This application requires .NET Framework 4.5 and VS 2010 redistributable to be installed. They already inculded in this package and will be installed on demand.
+
+Note: This application based on Dokan user-mode library which will be installed in setup process.
+
+[!] Warning: To edit files within virtual file system please TURN OFF temporary files creating in you editor (eg. "safe editing" in PhpStorm or "atomic_save" in SublimeText )
