@@ -1,0 +1,10 @@
+!Wiki-capa
+version = 1.17
+ext:checkuser = False
+ext:exptl = False
+ext:fpath = False
+ext:mkbot = False
+ext:mksysop = False
+ext:newusers = False
+ext:oversight = False
+ext:renameuser = False

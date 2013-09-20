@@ -1,0 +1,1492 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WikiAccess</name>
+    </assembly>
+    <members>
+        <member name="T:WikiTools.Access.AccessBrowser">
+            <summary>
+            Provides access to wiki via IE and WebRequest
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.AccessBrowser.#ctor(WikiTools.Access.Wiki)">
+            <summary>
+            Initializes new instance of AccessBrowser
+            </summary>
+            <param name="wiki">Wiki to work with</param>
+        </member>
+        <member name="M:WikiTools.Access.AccessBrowser.IsLoggedIn">
+            <summary>
+            Checks if we are currently logged in
+            </summary>
+            <returns>Login status</returns>
+        </member>
+        <member name="M:WikiTools.Access.AccessBrowser.EncodeUrl(System.String)">
+            <summary>
+            Encodes URL
+            </summary>
+            <param name="str">String to encode</param>
+            <returns>Encoded URL</returns>
+        </member>
+        <member name="M:WikiTools.Access.AccessBrowser.DownloadPage(System.String)">
+            <summary>
+            Downloads page via WebRequest
+            </summary>
+            <param name="pgname">Page name</param>
+            <returns>Page content</returns>
+        </member>
+        <member name="M:WikiTools.Access.AccessBrowser.PostQuery(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Sends a HTTP request using POST method and multipart/form-data content type
+            </summary>
+            <param name="pgname">Page name</param>
+            <param name="data">Post data</param>
+            <returns>HTTP response</returns>
+        </member>
+        <member name="M:WikiTools.Access.AccessBrowser.DownloadBinary(System.String)">
+            <summary>
+            Downloads page via WebRequest.
+            Note: this method is blocking
+            </summary>
+            <param name="pgname">Page name</param>
+            <returns>Page content</returns>
+        </member>
+        <member name="M:WikiTools.Access.AccessBrowser.Dispose">
+            <summary>
+            Release WebBrowser control
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.AccessBrowser.ParseAPITimestamp(System.String)">
+            <summary>
+            Parses API timestamp
+            </summary>
+            <param name="p">API timestamp in string</param>
+            <returns>Result in DateTime</returns>
+        </member>
+        <member name="P:WikiTools.Access.AccessBrowser.PageName">
+            <summary>
+            Allows to change current page
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.AccessBrowser.PageText">
+            <summary>
+            Current page text
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.PageTypes">
+            <summary>
+            Page type for AllPages filtering
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.PageTypes.All">
+            <summary>
+            Allow all pages
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.PageTypes.Redirects">
+            <summary>
+            Allow redirects only
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.PageTypes.NonRedirects">
+            <summary>
+            Allow everything but redirects
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.Wiki">
+            <summary>
+            Provides access to wiki
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.GetAllPagesEx(System.String,System.Int32,WikiTools.Access.PageTypes,System.Int32)">
+            <summary>
+            Retrieves all pages list from wiki
+            </summary>
+            <param name="startfrom">Starts enumerating from this pages</param>
+            <param name="limit">Limit of pages to get</param>
+            <param name="filter">Redirects filter</param>
+            <param name="namespaceID">Namespace to enumerate</param>
+            <returns>All pages list</returns>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.GetAllPages(System.String,System.Int32,WikiTools.Access.PageTypes,System.Int32)">
+            <summary>
+            Retrieves all pages list from wiki
+            </summary>
+            <param name="startfrom">Starts enumerating from this pages</param>
+            <param name="limit">Limit of pages to get</param>
+            <param name="filter">Redirects filter</param>
+            <param name="namespaceID">Namespace to enumerate</param>
+            <returns>All pages list</returns>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.GetPrefixIndex(System.String,WikiTools.Access.PageTypes,System.Int32)">
+            <summary>
+            Retrieves all pages list from wiki, that starts from specified prefix
+            </summary>
+            <param name="prefix">Prefix</param>
+            <param name="filter">Redirects filter</param>
+            <param name="namespaceID">Namespace to enumerate</param>
+            <returns>All pages list</returns>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.#ctor(System.String)">
+            <summary>
+            Initializes new instance of wiki object. Message cache will be stored in current directory
+            </summary>
+            <param name="uri">URI of wiki. <see cref="P:WikiTools.Access.Wiki.WikiURI"/></param>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.#ctor(System.String,System.String)">
+            <summary>
+            Initializes new instance of wiki object.
+            </summary>
+            <param name="uri">URI of wiki. <see cref="P:WikiTools.Access.Wiki.WikiURI"/></param>
+            <param name="cachedir">Folder where Message cache will be stored</param>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.Login(System.String,System.String)">
+            <summary>
+            Logs in
+            </summary>
+            <param name="username">User name</param>
+            <param name="password">User password</param>
+            <returns>Succes</returns>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.Logout">
+            <summary>
+            Logs out
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.IsLoggedIn">
+            <summary>
+            Checks if we are currently logged in
+            </summary>
+            <returns>True, if we are logged in</returns>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.GetMessage(System.String)">
+            <summary>
+            Gets message from message cache
+            </summary>
+            <param name="messageName">Message name</param>
+            <returns>Message content</returns>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.UpdateMessageCache">
+            <summary>
+            Updates Message Cache
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.CreatePage(System.String,System.String,System.String)">
+            <summary>
+            Creates a page on wiki if it doesn't exists
+            </summary>
+            <param name="name">Page name</param>
+            <param name="text">Page text</param>
+            <param name="summary">Page creation summry</param>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.CreatePage(System.String,System.String)">
+            <summary>
+            Creates a page on wiki if it doesn't exists
+            </summary>
+            <param name="name">Page name</param>
+            <param name="text">Page text</param>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.CreatePage(System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a page on wiki
+            </summary>
+            <param name="name">Page name</param>
+            <param name="text">Page text</param>
+            <param name="overwrite">Overwrite page, if it already exists</param>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.CreatePage(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a page on wiki
+            </summary>
+            <param name="name">Page name</param>
+            <param name="text">Page text</param>
+            <param name="summary">Page creation summry</param>
+            <param name="overwrite">Overwrite page, if it already exists</param>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.ReadNewMessages">
+            <summary>
+            Reads user talk page to remove new message notification
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Wiki.Dispose">
+            <summary>
+            Release all resources used by Wiki object
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Wiki.WikiURI">
+            <summary>
+            URI of wiki in format http://mediawiki.org/w
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Wiki.Capabilities">
+            <summary>
+            Returns wiki capabilities (version and extensions)
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Wiki.NamespacesUtils">
+            <summary>
+            Instance of Namespaces class
+            </summary>
+            <seealso cref="T:WikiTools.Access.Namespaces"/>
+        </member>
+        <member name="P:WikiTools.Access.Wiki.Messages">
+            <summary>
+            Message cache
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Wiki.Statistics">
+            <summary>
+            Statistics for this site (see Special:Statistics?action=raw)
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Wiki.CurrentUserInfo">
+            <summary>
+            Returns info about current user
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.Category">
+            <summary>
+            Represents a category in wiki
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Category.#ctor(WikiTools.Access.Wiki,System.String)">
+            <summary>
+            Initializes new instance of category class
+            </summary>
+            <param name="wiki">Wiki to use</param>
+            <param name="name">Name of the categry</param>
+        </member>
+        <member name="M:WikiTools.Access.Category.Load">
+            <summary>
+            Loads category content
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Category.GetPagesRecursive">
+            <summary>
+            Loads page in this category and all subcategories
+            </summary>
+            <returns>Pages</returns>
+        </member>
+        <member name="M:WikiTools.Access.Category.GetPagesRecursive(System.Boolean)">
+            <summary>
+            Loads page in this category and all subcategories
+            </summary>
+            <param name="removeDuplicates">Remove duplicates from list</param>
+            <returns>Pages</returns>
+        </member>
+        <member name="P:WikiTools.Access.Category.Subcategories">
+            <summary>
+            Gets subcategories.  Automatically calls Load() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Category.Pages">
+            <summary>
+            Gets pages in it.  Automatically calls Load() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Category.CategoryPage">
+            <summary>
+            Gets category page
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Category.HasCategoryPage">
+            <summary>
+            Checks if category has its page (if no, it is a wanted category)
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.WikiCapabilities">
+            <summary>
+            Capabilities of wiki
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.WikiCapabilities.Version">
+            <summary>
+            Version of MediaWiki
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.WikiCapabilities.HasCheckUser">
+            <summary>
+            Requierd to check users
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.WikiCapabilities.HasExpandTemplates">
+            <summary>
+            Required for full template substitution
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.WikiCapabilities.HasFilePath">
+            <summary>
+            Required to get images
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.WikiCapabilities.HasMakeBot">
+            <summary>
+            Requiered to make bot via MakeBot interface and have access to MakeBot log
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.WikiCapabilities.HasMakeSysop">
+            <summary>
+            Required to determine what permission bureaucrat have
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.WikiCapabilities.HasNewUserLog">
+            <summary>
+            Required to get new users log
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.WikiCapabilities.HasOversight">
+            <summary>
+            Required to hide revisions
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.WikiCapabilities.HasRenameUser">
+            <summary>
+            Required to rename users
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.WikiCapabilities.ToString">
+            <summary>
+            Casts capabilities to string
+            </summary>
+            <returns>String</returns>
+        </member>
+        <member name="M:WikiTools.Access.WikiCapabilities.FromString(System.String)">
+            <summary>
+            Loads capabilities from string
+            </summary>
+            <param name="s">String to parse</param>
+            <returns>Succes of parsing</returns>
+        </member>
+        <member name="T:WikiTools.Access.Statistics">
+            <summary>
+            Statistics of wiki
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Statistics.TotalPages">
+            <summary>
+            Count of total pages
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Statistics.GoodPages">
+            <summary>
+            Count of articles
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Statistics.Views">
+            <summary>
+            Count of views
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Statistics.Edits">
+            <summary>
+            Count of revisions
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Statistics.Users">
+            <summary>
+            Count of users
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Statistics.Admins">
+            <summary>
+            Count of sysops
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Statistics.Images">
+            <summary>
+            Count of images
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Statistics.Jobs">
+            <summary>
+            Size of job queue
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.CurrentUser">
+            <summary>
+            Gets info about current user using API
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.CurrentUser.#ctor(WikiTools.Access.Wiki)">
+            <summary>
+            Initializes new instance of object
+            </summary>
+            <param name="w">Wiki to use</param>
+        </member>
+        <member name="M:WikiTools.Access.CurrentUser.Reload">
+            <summary>
+            Reloads user info
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.CurrentUser.HasRight(System.String)">
+            <summary>
+            Indicates if user has specified right
+            </summary>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="P:WikiTools.Access.CurrentUser.HasNewMessges">
+            <summary>
+            Indicates if user has new messages
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.CurrentUser.UserRights">
+            <summary>
+            Get rights (not flags/groups!) which user has
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.CurrentUser.UserGroups">
+            <summary>
+            Contains user groups/flags
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.CurrentUser.IsBlocked">
+            <summary>
+            Indicates if user is blocked
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.CurrentUser.BlockedBy">
+            <summary>
+            Gets sysop which blocked current user
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.CurrentUser.BlockReason">
+            <summary>
+            Reason why user is blocked
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.CurrentUser.CanEdit">
+            <summary>
+            Indicates if user can edit
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.WikiException">
+            <summary>
+            Generic wiki exception
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.WikiException.#ctor">
+            <summary>
+            Initializes new instance of WikiException object
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.WikiException.#ctor(System.String)">
+            <summary>
+            Initializes new instance of WikiException object
+            </summary>
+            <param name="message">Message of exception</param>
+        </member>
+        <member name="T:WikiTools.Access.WikiNotSupportedException">
+            <summary>
+            Is thrown when MediaWiki doesn't support some features
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.WikiNotSupportedException.#ctor">
+            <summary>
+            Initializes new instance of WikiNotSupportedException object
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.WikiNotSupportedException.#ctor(System.String)">
+            <summary>
+            Initializes new instance of WikiNotSupportedException object
+            </summary>
+            <param name="message">Message of exception</param>
+        </member>
+        <member name="T:WikiTools.Access.WikiPermissionsExpection">
+            <summary>
+            Is thrown when you haven't got permissions to do some actions
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.WikiPermissionsExpection.#ctor">
+            <summary>
+            Initializes new instance of WikiPermissionsExpection object
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.WikiPermissionsExpection.#ctor(System.String)">
+            <summary>
+            Initializes new instance of WikiPermissionsExpection object
+            </summary>
+            <param name="message">Message of exception</param>
+        </member>
+        <member name="T:WikiTools.Access.WikiPageNotFoundExcecption">
+            <summary>
+            Is trown when page doesn't exists
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.WikiPageNotFoundExcecption.#ctor">
+            <summary>
+            Initializes new instance of WikiPageNotFoundExcecption object
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.WikiPageNotFoundExcecption.#ctor(System.String)">
+            <summary>
+            Initializes new instance of WikiPageNotFoundExcecption object
+            </summary>
+            <param name="message">Message of exception</param>
+        </member>
+        <member name="T:WikiTools.Access.MessageCache">
+            <summary>
+            Message cache
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.MessageCache.#ctor(System.String)">
+            <summary>
+            Loads message cache from files
+            </summary>
+            <param name="fname">File name</param>
+        </member>
+        <member name="M:WikiTools.Access.MessageCache.#ctor(WikiTools.Access.Wiki)">
+            <summary>
+            Loads message cache from live wiki
+            </summary>
+            <param name="wiki">Wiki to load</param>
+        </member>
+        <member name="M:WikiTools.Access.MessageCache.MkName(System.String)">
+            <summary>
+            Makes file name for message cache file
+            </summary>
+            <param name="uri">URI of wiki</param>
+            <returns>File name</returns>
+        </member>
+        <member name="M:WikiTools.Access.MessageCache.SaveToFile(System.String)">
+            <summary>
+            Saves message cache to file
+            </summary>
+            <param name="fname">File name to save</param>
+            <returns>Success</returns>
+        </member>
+        <member name="M:WikiTools.Access.MessageCache.GetMessage(System.String)">
+            <summary>
+            Gets message from message cache
+            </summary>
+            <param name="name">Name of message</param>
+            <returns>Message content</returns>
+        </member>
+        <member name="P:WikiTools.Access.MessageCache.Item(System.String)">
+            <summary>
+            Returns message cache messages
+            </summary>
+            <param name="str">Message name</param>
+            <returns>Message contents</returns>
+        </member>
+        <member name="P:WikiTools.Access.MessageCache.Months">
+            <summary>
+            Months
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.MessageCache.MonthsGen">
+            <summary>
+            Months that used in date
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.MessageCache.MonthRegex">
+            <summary>
+            Regular expression for month
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.Namespaces">
+            <summary>
+            Namespace utils
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.Media">
+            <summary>
+            Media namesapce
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.Special">
+            <summary>
+            Special namespace, where specail pages are stored
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.Main">
+            <summary>
+            Main (article) namespace
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.Talk">
+            <summary>
+            Talk for mainspace pages
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.User">
+            <summary>
+            Users' personal pages
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.UserTalk">
+            <summary>
+            Users' talk pages
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.Project">
+            <summary>
+            Project pages
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.ProjectTalk">
+            <summary>
+            Talk for project pages
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.Image">
+            <summary>
+            Media files
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.ImageTalk">
+            <summary>
+            Media files' talk pages
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.MediaWiki">
+            <summary>
+            MediaWiki messages
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.MediaWikiTalk">
+            <summary>
+            MediaWiki messages talk pages
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.Template">
+            <summary>
+            Templates
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.TemplateTalk">
+            <summary>
+            Templates' talk pages
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.Help">
+            <summary>
+            Help
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.HelpTalk">
+            <summary>
+            Help's talk pages
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.Category">
+            <summary>
+            Categories
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Namespaces.CategoryTalk">
+            <summary>
+            Categories' talk pages
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.GetNamespaces(WikiTools.Access.Wiki)">
+            <summary>
+            Loads namespaces from live wiki
+            </summary>
+            <param name="wiki">Source of namespaces</param>
+            <returns>Namespace ID:Name list</returns>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.LoadFromFile(System.String)">
+            <summary>
+            Loads namespaces from file
+            </summary>
+            <param name="fname">File name</param>
+            <returns>Namespace ID:Name list</returns>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.SaveToFile(System.String,System.Collections.Generic.SortedList{System.Int32,System.String})">
+            <summary>
+            Saves namespaces to file
+            </summary>
+            <param name="fname">File name</param>
+            <param name="ns">Namespaces list</param>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.MkName(System.String)">
+            <summary>
+            Makes name for cache file
+            </summary>
+            <param name="uri">URI of wiki</param>
+            <returns>File name</returns>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.GetStandardNamespaces">
+            <summary>
+            Gets canonical namespaces list
+            </summary>
+            <returns>Canonical namespaces list</returns>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.#ctor(System.String)">
+            <summary>
+            Initializes new instance of object from file
+            </summary>
+            <param name="fpath">File name</param>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.#ctor(WikiTools.Access.Wiki)">
+            <summary>
+            Initializes new instance of object from live wiki
+            </summary>
+            <param name="wiki">Wiki</param>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.GetNamespaceID(System.String)">
+            <summary>
+            Gets IF of specified namespace
+            </summary>
+            <param name="nsName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.GetNamespaceByTitle(System.String)">
+            <summary>
+            Extracts namespace from title
+            </summary>
+            <param name="title">Page title</param>
+            <returns>Namespace ID</returns>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.SaveToFile(System.String)">
+            <summary>
+            Saves namespaces to file
+            </summary>
+            <param name="fname">File name</param>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.GetNamespaceByID(System.Int32)">
+            <summary>
+            Gets namespace by ID
+            </summary>
+            <param name="ID">Namespace ID</param>
+            <returns>Namespace name</returns>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.TitleToTalk(System.String)">
+            <summary>
+            Get talk title of specified page
+            </summary>
+            <param name="title">Page title</param>
+            <returns>Talk title</returns>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.TitleFromTalk(System.String)">
+            <summary>
+            Get page title of specified talk page
+            </summary>
+            <param name="title">Talk title</param>
+            <returns>Page title</returns>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.IsTalkNamespace(System.String)">
+            <summary>
+            Checks if page is in talk namespace
+            </summary>
+            <param name="title">Page title</param>
+            <returns>Is talk namespace</returns>
+        </member>
+        <member name="M:WikiTools.Access.Namespaces.RemoveNamespace(System.String)">
+            <summary>
+            Removes namespace prefix from 
+            </summary>
+            <param name="pgname">Page name</param>
+            <returns>Page name without namespace</returns>
+        </member>
+        <member name="T:WikiTools.Access.Page">
+            <summary>
+            Represents wikipage
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.#ctor(WikiTools.Access.Wiki,System.String)">
+            <summary>
+            Initializes new instance of page
+            </summary>
+            <param name="wiki">Wiki to use</param>
+            <param name="pgname">Page name</param>
+        </member>
+        <member name="M:WikiTools.Access.Page.LoadText">
+            <summary>
+            Reloads page text.
+            Note: when you get content of Text property for first time, it automatically calls this method
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.LoadInfo">
+            <summary>
+            Loads common page info: existance, page ID, last edit time, last edit ID, is redirect
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.LoadRedirectsOn">
+            <summary>
+            Loads on which page this page redirects
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.LoadInternalLinks">
+            <summary>
+            Loads internal links on this page
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.LoadExternalLinks">
+            <summary>
+            Loads external links on this page
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.LoadTemplates">
+            <summary>
+            Loads list of templates used on this page
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.LoadImages">
+            <summary>
+            Loads images of templates used on this page
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.LoadHistory">
+            <summary>
+            Loads history of this page
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.LoadCategories">
+            <summary>
+            Loads category that contains this page
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.LoadSubpages">
+            <summary>
+            Loads subpages of this page
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.SetText(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Saves this page
+            </summary>
+            <param name="newText">New text of this page</param>
+            <param name="summary">Edit summary</param>
+            <param name="minor">Mark revision as minor</param>
+            <param name="watch">Add this page to watchlist</param>
+        </member>
+        <member name="M:WikiTools.Access.Page.SetText(System.String,System.String,System.Boolean)">
+            <summary>
+            Saves this page
+            </summary>
+            <param name="newText">New text of this page</param>
+            <param name="summary">Edit summary</param>
+            <param name="minor">Mark revision as minor</param>
+        </member>
+        <member name="M:WikiTools.Access.Page.SetText(System.String,System.String)">
+            <summary>
+            Saves this page
+            </summary>
+            <param name="newText">New text of this page</param>
+            <param name="summary">Edit summary</param>
+        </member>
+        <member name="M:WikiTools.Access.Page.SetText(System.String)">
+            <summary>
+            Saves this page
+            </summary>
+            <param name="newText">New text of this page</param>
+        </member>
+        <member name="M:WikiTools.Access.Page.SetText(System.String,System.String,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Saves this page
+            </summary>
+            <param name="newText">New text of this page</param>
+            <param name="summary">Edit summary</param>
+            <param name="minor">Mark revision as minor</param>
+            <param name="watch">Add this page to watchlist</param>
+            <param name="section">Section to edit</param>
+        </member>
+        <member name="M:WikiTools.Access.Page.Rename(System.String,System.String)">
+            <summary>
+            Renames this name
+            </summary>
+            <param name="newName">New page name</param>
+            <param name="reason">Reason of name change</param>
+        </member>
+        <member name="M:WikiTools.Access.Page.Purge">
+            <summary>
+            Cleans cahce of this page
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.BypassRedirect">
+            <summary>
+            Bypasses redirect
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.PrepareToEdit">
+            <summary>
+            Initializes variables to prevent edit confilcts
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.GetLastEdit">
+            <summary>
+            Returns the date of last edit
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WikiTools.Access.Page.Watch">
+            <summary>
+            Adds page to watchlist
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Page.Unwatch">
+            <summary>
+            Removes page from watchlist
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.Text">
+            <summary>
+            Returns page text
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.Categories">
+            <summary>
+            Category of this page. Automatically calls LoadCategory() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.RedirectsOn">
+            <summary>
+            Gets the page on which this page redirects. Automatically calls LoadRedirectsOn() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.History">
+            <summary>
+            Gets history of this page. Automatically calls LoadHistory() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.InternalLinks">
+            <summary>
+            Gets internal links on this page. Automatically calls LoadInternalLinks() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.ExternalLinks">
+            <summary>
+            Gets external links on this page. Automatically calls LoadExternalLinks() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.Subpages">
+            <summary>
+            Gets subpages of this page. Automatically calls LoadSubpages() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.Templates">
+            <summary>
+            Gets list of templates used of this page. Automatically calls LoadTemplates() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.Images">
+            <summary>
+            Gets list of images used of this page. Automatically calls LoadImages() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.PageID">
+            <summary>
+            Gets page ID. Automatically calls LoadInfo() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.PageName">
+            <summary>
+            Gets page name
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.Touched">
+            <summary>
+            Gets last edit time. Automatically calls LoadInfo() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.PageRevisionID">
+            <summary>
+            Gets last edit ID. Automatically calls LoadInfo() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.IsRedirect">
+            <summary>
+            Is this page redirect. Automatically calls LoadInfo() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.Exists">
+            <summary>
+            Gets existance of this page. Automatically calls LoadInfo() on first usage
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.Length">
+            <summary>
+            Gets length of article in bytes using either API or page text
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.NamespaceID">
+            <summary>
+            Gets namespace ID of this page
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.NamespeceName">
+            <summary>
+            Gets namespace name of this page
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.IsTalkPage">
+            <summary>
+            Is this page talk?
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.Page.TalkPage">
+            <summary>
+            Gets talk page of this page
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.Image">
+            <summary>
+            Provides access to images
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Image.#ctor(WikiTools.Access.Wiki,System.String)">
+            <summary>
+            Initializes Image object
+            </summary>
+            <param name="wiki">Wiki to use</param>
+            <param name="name">Image name</param>
+        </member>
+        <member name="M:WikiTools.Access.Image.Download">
+            <summary>
+            Downloads image from wiki. Needs Special:Filepath
+            </summary>
+            <returns>Image</returns>
+        </member>
+        <member name="M:WikiTools.Access.Image.CalculateMD5Hash(System.Byte[])">
+            <summary>
+            Computes MD5 hash using .NET and converts it to string
+            </summary>
+            <param name="img">Image content</param>
+            <returns>String-formatted MD5 hash</returns>
+        </member>
+        <member name="T:WikiTools.Access.PageList">
+            <summary>
+            Represents page list
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.PageList.FromCategory(WikiTools.Access.Wiki,System.String,System.Boolean)">
+            <summary>
+            Initializes page list from category
+            </summary>
+            <param name="wiki">Wiki to use</param>
+            <param name="catname">Category name</param>
+            <param name="includeSubCategories">Include subcategories pages</param>
+            <returns>Page list</returns>
+        </member>
+        <member name="M:WikiTools.Access.PageList.FromLinksOnPage(WikiTools.Access.Wiki,System.String)">
+            <summary>
+            Initializes page list from links on page
+            </summary>
+            <param name="wiki">Wiki to use</param>
+            <param name="pagename">Page name</param>
+            <returns>Page list</returns>
+        </member>
+        <member name="M:WikiTools.Access.PageList.FromWatchlist(WikiTools.Access.Wiki)">
+            <summary>
+            Initializes page list from watchlist
+            </summary>
+            <param name="wiki">Wiki to use</param>
+            <returns>Page list</returns>
+        </member>
+        <member name="M:WikiTools.Access.PageList.FromAllPages(WikiTools.Access.Wiki,System.String,System.Int32,WikiTools.Access.PageTypes,System.Int32)">
+            <summary>
+            Loads list from all pages
+            </summary>
+            <param name="wiki">Wiki to use</param>
+            <param name="startfrom">Starts enumerating from this pages</param>
+            <param name="limit">Limit of pages to get</param>
+            <param name="filter">Redirects filter</param>
+            <param name="namespaceID">Namespace to enumerate</param>
+            <returns>Page list</returns>
+        </member>
+        <member name="M:WikiTools.Access.PageList.#ctor(WikiTools.Access.Wiki,System.String[])">
+            <summary>
+            Initializes new instance of page list
+            </summary>
+            <param name="wiki">Wiki to use</param>
+            <param name="pages">Pages in list</param>
+        </member>
+        <member name="M:WikiTools.Access.PageList.AllTitlesToTalk">
+            <summary>
+            Convert all pages in list to talk pages
+            </summary>
+            <returns>Number of affected titles</returns>
+        </member>
+        <member name="M:WikiTools.Access.PageList.RemoveDuplicates">
+            <summary>
+            Removes duplicates from list
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.PageList.AllTitlesFromTalk">
+            <summary>
+            Convert all pages in list from talk pages to normal
+            </summary>
+            <returns>Number of affected titles</returns>
+        </member>
+        <member name="M:WikiTools.Access.PageList.Filter(WikiTools.Access.PageListFilter)">
+            <summary>
+            Filters out pages from page list
+            </summary>
+            <param name="plf">If this delegate return false, page will be filtered out from page list</param>
+            <returns>Count of filtered out list</returns>
+        </member>
+        <member name="M:WikiTools.Access.PageList.Filter``1(WikiTools.Access.ParametrizedPageListFilter{``0},``0)">
+            <summary>
+            Filters out pages from page list
+            </summary>
+            <typeparam name="T">Type of parameter of filter delegate</typeparam>
+            <param name="plf">If this delegate return false, page will be filtered out from page list</param>
+            <param name="param">Parameter of plf delegate</param>
+            <returns>Count of filtered out pages</returns>
+        </member>
+        <member name="M:WikiTools.Access.PageList.FilterAllowedNamespaces(System.Int32[])">
+            <summary>
+            Filter page list by namespaces
+            </summary>
+            <param name="allowedNS">List of IDs of namespeces, pages in which should be kept in list</param>
+            <returns>Count of filtered out pages</returns>
+        </member>
+        <member name="M:WikiTools.Access.PageList.FilterDisallowedNamespaces(System.Int32[])">
+            <summary>
+            Filter page list by namespaces
+            </summary>
+            <param name="disallowedNS">List of IDs of namespeces, pages in which should be removed from list</param>
+            <returns>Count of filtered out pages</returns>
+        </member>
+        <member name="M:WikiTools.Access.PageList.Clone">
+            <summary>
+            CLones this list
+            </summary>
+            <returns>New copy of this list</returns>
+        </member>
+        <member name="P:WikiTools.Access.PageList.Pages">
+            <summary>
+            Gets page in this list
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.PageListFilter">
+            <summary>
+            Allows user to filter out pages from page list
+            </summary>
+            <param name="page">Page needed to be filtered</param>
+            <returns>If true, page will be kept in page list. If false, page will be deleted.</returns>
+        </member>
+        <member name="T:WikiTools.Access.ParametrizedPageListFilter`1">
+            <summary>
+            Allows user to filter out pages from page list
+            </summary>
+            <typeparam name="T">Type of arameter for filter function</typeparam>
+            <param name="page">Page needed to be filtered</param>
+            <param name="param">Parameter for filter function</param>
+            <returns>If true, page will be kept in page list. If false, page will be deleted.</returns>
+        </member>
+        <member name="T:WikiTools.Access.Revision">
+            <summary>
+            Page revision
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Revision.Wiki">
+            <summary>
+            Wiki which contains this revision
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Revision.Page">
+            <summary>
+            Page name
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Revision.ID">
+            <summary>
+            Revision ID
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Revision.Time">
+            <summary>
+            Revision creation time
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Revision.Author">
+            <summary>
+            Revision author
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Revision.Minor">
+            <summary>
+            Is minor revision
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Revision.Comment">
+            <summary>
+            Comment
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Revision.GetContent">
+            <summary>
+            Gets revsion content
+            </summary>
+            <returns>Revision</returns>
+        </member>
+        <member name="M:WikiTools.Access.Revision.#ctor(WikiTools.Access.Wiki,System.Int32,System.String,System.String,System.DateTime,System.Boolean,System.String)">
+            <summary>
+            Creates new structure instance
+            </summary>
+            <param name="w">Wiki, which contatins this revision</param>
+            <param name="ID">Revision ID</param>
+            <param name="Page">Page name</param>
+            <param name="Author">Revision author</param>
+            <param name="Time">Revision creation time</param>
+            <param name="Minor">Is minor</param>
+            <param name="Comment">Comment</param>
+        </member>
+        <member name="M:WikiTools.Access.Revision.ToString">
+            <summary>
+            Represents revision as string
+            </summary>
+            <returns>String view of revision</returns>
+        </member>
+        <member name="T:WikiTools.Access.User">
+            <summary>
+            Provides interface to user-related functions
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.User.#ctor(WikiTools.Access.Wiki,System.String)">
+            <summary>
+            Initializes new instance of User class
+            </summary>
+            <param name="wiki">Site, where user exists</param>
+            <param name="name">User name</param>
+        </member>
+        <member name="M:WikiTools.Access.User.LoadProps">
+            <summary>
+            Loads properties (groups, editcount) for user
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.User.Name">
+            <summary>
+            User's name
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.User.Editcount">
+            <summary>
+            Count of all edits made by this user
+            </summary>
+        </member>
+        <member name="P:WikiTools.Access.User.Groups">
+            <summary>
+            Flags which this user has
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.Utils">
+            <summary>
+            Contains useful utils for library
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Utils.RemoveDuplicates``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Removes duplicates from list
+            </summary>
+            <typeparam name="T">Type of list</typeparam>
+            <param name="list">List to clean up</param>
+            <returns>Result list</returns>
+        </member>
+        <member name="M:WikiTools.Access.Utils.RemoveDuplicates``1(``0[])">
+            <summary>
+            Removes duplicates from array
+            </summary>
+            <typeparam name="T">Type of array</typeparam>
+            <param name="list">Array to clean up</param>
+            <returns>Result list</returns>
+        </member>
+        <member name="M:WikiTools.Access.Utils.RemoveDuplicates(System.String[])">
+            <summary>
+            Removes duplicates from string array
+            </summary>
+            <param name="array">Array to clean up</param>
+            <returns>Result list</returns>
+        </member>
+        <member name="M:WikiTools.Access.Utils.FormatDateTimeRFC2822(System.DateTime)">
+            <summary>
+            Formats DateTime in API format
+            </summary>
+            <param name="dt">DateTime in format</param>
+            <returns>DateTime in API format</returns>
+        </member>
+        <member name="M:WikiTools.Access.Utils.ArrayContains``1(``0[],``0)">
+            <summary>
+            Checks if array contains specified element
+            </summary>
+            <typeparam name="T">Type of array</typeparam>
+            <param name="array">Array to check</param>
+            <param name="value">Value to check</param>
+            <returns>Existance of specified element in array</returns>
+        </member>
+        <member name="M:WikiTools.Access.Utils.AddPrefix(System.String[],System.String)">
+            <summary>
+            Adds prefix to all elements in array
+            </summary>
+            <param name="orig">Original array</param>
+            <param name="prefix">Prefix to add</param>
+            <returns>New array</returns>
+        </member>
+        <member name="M:WikiTools.Access.Utils.Swap``1(``0@,``0@)">
+            <summary>
+            Swaps values of 2 variables
+            </summary>
+            <typeparam name="T">Variables type</typeparam>
+            <param name="arg1">First variable</param>
+            <param name="arg2">Second variable</param>
+        </member>
+        <member name="M:WikiTools.Access.Utils.Wait(System.TimeSpan)">
+            <summary>
+            Adoptated version of Thread.Sleep method
+            </summary>
+            <param name="ts">Time to wait</param>
+        </member>
+        <member name="P:WikiTools.Access.Utils.Version">
+            <summary>
+            Returns version of library
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.WatchList">
+            <summary>
+            Provides access to watch list
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.WatchList.#ctor(WikiTools.Access.Wiki)">
+            <summary>
+            Initializes new instance of WatchList class
+            </summary>
+            <param name="site">Wiki, from which you need access to watch list</param>
+        </member>
+        <member name="M:WikiTools.Access.WatchList.LoadPages">
+            <summary>
+            Loads watchlist
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.WatchList.Add(System.String)">
+            <summary>
+            Add pages to watchlist
+            </summary>
+            <param name="page">Page name</param>
+        </member>
+        <member name="M:WikiTools.Access.WatchList.Remove(System.String)">
+            <summary>
+            Removes page from watchlist
+            </summary>
+            <param name="page">Page name</param>
+        </member>
+        <member name="P:WikiTools.Access.WatchList.Pages">
+            <summary>
+            Gets page in watch list
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.Wikimedia.WikimediaProjects">
+            <summary>
+            Wikimedia projects list.
+            Last update: 27.05.2007
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Wikipedia">
+            <summary>
+            Wikipedia - a free encyclopedia
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Wiktionary">
+            <summary>
+            Wiktionary - a free dictionary
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Wikibooks">
+            <summary>
+            Wikibooks - free learning materials
+            </summary>		
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Wikinews">
+            <summary>
+            Wikinews - a free news source
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Wikiquote">
+            <summary>
+            Wikiquote - a free online compendium of quotations
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Wikisource">
+            <summary>
+            Wikisource - an online library of free content publications
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Wikiversity">
+            <summary>
+            Wikiversity - a free learning comunity
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Commons">
+            <summary>
+            Wikimedia Commons - shared media repository
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Meta">
+            <summary>
+            Meta-Wiki - Wikimedia project coordination
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Incubator">
+            <summary>
+            Wikimedia Incubator - Incubator of Wikimedia projects
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Sources">
+            <summary>
+            Wikisource central wiki
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Species">
+            <summary>
+            Wikispecies - a free directory of species
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Test">
+            <summary>
+            Test wiki for developers and bot debugging
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Foundation">
+            <summary>
+            Wikimedia Foundation wiki
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.MediaWiki">
+            <summary>
+            MediaWiki.org
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Wikimania2005">
+            <summary>
+            Wikimania 2005 official site
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Wikimania2006">
+            <summary>
+            Wikimania 2006 official site
+            </summary>
+        </member>
+        <member name="F:WikiTools.Access.Wikimedia.WikimediaProjects.Wikimania2007">
+            <summary>
+            Wikimania 2007 official site
+            </summary>
+        </member>
+        <member name="T:WikiTools.Access.Wikimedia.WikimediaUtils">
+            <summary>
+            Provides utils for wikimedia projects
+            </summary>
+        </member>
+        <member name="M:WikiTools.Access.Wikimedia.WikimediaUtils.MakeUri(WikiTools.Access.Wikimedia.WikimediaProjects)">
+            <summary>
+            Makes URI for specified Wikimedia project
+            </summary>
+            <param name="proj">Project</param>
+            <returns>Project URI</returns>
+        </member>
+        <member name="M:WikiTools.Access.Wikimedia.WikimediaUtils.MakeUri(WikiTools.Access.Wikimedia.WikimediaProjects,System.String)">
+            <summary>
+            Makes URI for specified Wikimedia project
+            </summary>
+            <param name="proj">Project</param>
+            <param name="langCode">Language code</param>
+            <returns>Project URI</returns>
+        </member>
+        <member name="P:WikiTools.Access.Wikimedia.WikimediaUtils.Capabilities">
+            <summary>
+            Gets Wikimedia wikis capabilities
+            </summary>
+        </member>
+    </members>
+</doc>

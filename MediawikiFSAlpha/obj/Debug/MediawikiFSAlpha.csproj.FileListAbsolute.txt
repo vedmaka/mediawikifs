@@ -1,0 +1,11 @@
+c:\users\vedmaka\documents\visual studio 2013\Projects\MediawikiFSAlpha\MediawikiFSAlpha\bin\Debug\MediawikiFSAlpha.exe.config
+c:\users\vedmaka\documents\visual studio 2013\Projects\MediawikiFSAlpha\MediawikiFSAlpha\bin\Debug\MediawikiFSAlpha.exe
+c:\users\vedmaka\documents\visual studio 2013\Projects\MediawikiFSAlpha\MediawikiFSAlpha\bin\Debug\MediawikiFSAlpha.pdb
+c:\users\vedmaka\documents\visual studio 2013\Projects\MediawikiFSAlpha\MediawikiFSAlpha\bin\Debug\DokanNet.dll
+c:\users\vedmaka\documents\visual studio 2013\Projects\MediawikiFSAlpha\MediawikiFSAlpha\bin\Debug\DokanNet.pdb
+c:\users\vedmaka\documents\visual studio 2013\Projects\MediawikiFSAlpha\MediawikiFSAlpha\obj\Debug\MediawikiFSAlpha.exe
+c:\users\vedmaka\documents\visual studio 2013\Projects\MediawikiFSAlpha\MediawikiFSAlpha\obj\Debug\MediawikiFSAlpha.pdb
+c:\users\vedmaka\documents\visual studio 2013\Projects\MediawikiFSAlpha\MediawikiFSAlpha\bin\Debug\WikiAccess.dll
+c:\users\vedmaka\documents\visual studio 2013\Projects\MediawikiFSAlpha\MediawikiFSAlpha\bin\Debug\WikiAccess.pdb
+c:\users\vedmaka\documents\visual studio 2013\Projects\MediawikiFSAlpha\MediawikiFSAlpha\bin\Debug\WikiAccess.xml
+c:\users\vedmaka\documents\visual studio 2013\Projects\MediawikiFSAlpha\MediawikiFSAlpha\obj\Debug\MediawikiFSAlpha.csprojResolveAssemblyReference.cache
