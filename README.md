@@ -1,7 +1,8 @@
 MediawikiFS
 ===========
 
-Mediawiki user-mode virtual file system.
+Mediawiki user-mode virtual file system that allows to mount Mediawiki website as remote drive in Windows or Linux.
+Based on Dokan VFS library .NET bindings and WikiAccess .NET mediawiki library.
 
 ![MediawikiFS](https://upload.wikimedia.org/wikipedia/mediawiki/thumb/8/8d/Mwfs.png/800px-Mwfs.png)
 
