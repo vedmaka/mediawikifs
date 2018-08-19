@@ -8,4 +8,4 @@ Based on Dokan VFS library .NET bindings and WikiAccess .NET mediawiki library.
 
 **! This is proof-of-concept preview and placeholder for future alpha version.**
 
-See more at https://www.mediawiki.org/wiki/User:Vedmaka/MediawikiFS
+See more details at https://www.mediawiki.org/wiki/User:Vedmaka/MediawikiFS and setup instructions at https://www.mediawiki.org/wiki/User:Vedmaka/MediawikiFS/User-guide
